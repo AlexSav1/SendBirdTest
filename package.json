@@ -30,6 +30,7 @@
     "express": "^4.16.3",
     "rxjs": "^5.5.6",
     "sendbird": "^3.0.64",
+    "typescript": "~2.5.3",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
@@ -47,8 +48,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
     "ts-node": "~4.1.0",
-    "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "tslint": "~5.9.1"
   },
   "engines": {
     "node": "6.11.2",

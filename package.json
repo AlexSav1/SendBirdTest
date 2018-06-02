@@ -19,7 +19,7 @@
     "@types/jasminewd2": "~2.0.2",
     "@types/node": "~6.0.60",
     "@angular/animations": "^5.2.0",
-    "@angular/cli": "~1.7.2",
+    "@angular/cli": "~1.7.4",
     "@angular/common": "^5.2.0",
     "@angular/compiler": "^5.2.0",
     "@angular/compiler-cli": "^5.2.0",

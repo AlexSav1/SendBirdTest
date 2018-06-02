@@ -4,7 +4,7 @@ import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 import { AppModule } from './app/app.module';
 import { environment } from './environments/environment';
 
-import * as SendBird from 'SendBird';
+import * as SendBird from 'sendbird';
 
 if (environment.production) {
   enableProdMode();

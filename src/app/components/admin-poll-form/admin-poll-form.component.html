@@ -1,0 +1,43 @@
+<div class="container">
+
+    <h1>Add New Poll</h1>
+  
+    
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" [(ngModel)]="title" class="form-control" placeholder="Add Name" name="title">
+      </div>
+  
+      <button (click)="showChoiceModal()" class="btn btn-success" type="button">Add Choice</button>
+
+      <div *ngFor="let choice of choices">
+          <h3>{{choice.title}}</h3>
+          <p>{{choice.description}}</p>
+
+          <!-- <button style="right: -10px; top: -10px;" (click)="deleteExhibition(exhibition._id)" class="btn btn-fab btn-danger btn-round" rel="tooltip" title="Change Cover Picture">
+               <i class="material-icons">clear</i>
+          </button> -->
+          
+      </div>
+  
+      <button *ngIf="choices.length > 0" style="float: left" (click)="uploadPoll()" class="btn btn-primary" type="button">Upload Poll</button>
+    
+</div>
+
+<!-- New Choice Modal -->
+<div class="modal fade" id="newChoiceModal" tabindex="-1" role="dialog" aria-labelledby="newChoiceLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="padding: 30px;">
+          <label>New Poll Choice</label>
+          <input type="text" [(ngModel)]="newChoice.title" class="form-control" placeholder="Title" name="choiceTitle">
+          <input type="text" [(ngModel)]="newChoice.description" class="form-control" placeholder="Description" name="choiceDescription">
+
+          <br>
+          <br>
+
+          <button (click)="saveChoice()" class="btn btn-primary btn-lg" type="button">
+                  Add Choice
+          </button>
+      </div>
+    </div>
+</div>

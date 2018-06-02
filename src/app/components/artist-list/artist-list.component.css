@@ -1,0 +1,15 @@
+#team-2 {
+    background-color: white;
+}
+
+.name-link:hover {
+    text-decoration: underline;
+}
+
+.name-tag {
+    position: absolute;
+    bottom: 5px;
+    right: 30px;
+    color: white;
+    z-index: 1;
+}

@@ -1,0 +1,9 @@
+/* img {
+    max-width: 550px;
+} */
+
+#profile-pic {
+    height: 150px;
+    width: 150px;
+    object-fit: cover;
+}

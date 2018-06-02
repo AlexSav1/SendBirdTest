@@ -1,0 +1,9 @@
+.form-group input[type=file] {
+    opacity: 100;
+    position: relative;
+    z-index: 1;
+}
+
+label {
+    color: black;
+}

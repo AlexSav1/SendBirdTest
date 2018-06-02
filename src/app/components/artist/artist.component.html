@@ -1,0 +1,189 @@
+<div class="background">
+    <div style="height: 20vh;"></div>
+        <div *ngIf="artist" class="profile-page">
+
+
+                <div *ngIf="!artist.coverImageUrl" class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/conPics/con17.JPG');"></div>
+                <div *ngIf="artist.coverImageUrl" class="page-header header-filter" data-parallax="true" style="height: 80vh;" [ngStyle]="{'background-image': 'url(' + artist.coverImageUrl + ')'}"></div>
+                <div class="main main-raised" style="margin-bottom: 30px; margin-top: -200px;">
+                    <div class="profile-content">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-6 ml-auto mr-auto">
+                                    <div class="profile">
+                                        <div class="avatar">
+                                            <img *ngIf="artist.profileImageUrl" id="profile-pic" [src]="artist.profileImageUrl" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                            <img *ngIf="!artist.profileImageUrl" id="profile-pic" src="assets/img/kit/pro/placeholder.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                        </div>
+                                        <div class="name">
+                                            <h3 class="title">{{artist.fullName}}</h3>
+                                            <!-- <h6>Artist</h6> -->
+                                            <a href="https://{{artist.facebookUrl}}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a href="https://{{artist.twitterUrl}}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="https://{{artist.instagramUrl}}" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="follow">
+                                        <button class="btn btn-fab btn-primary btn-round" rel="tooltip" title="Follow this user">
+                                            <i class="material-icons">add</i>
+                                        </button>
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="description text-center">
+                                <p>{{artist.bio}}</p>
+                            </div>
+                
+                            <br>
+                            <br>
+                            <div class="row">
+                                <div class="col-md-6 ml-auto mr-auto">
+                                    <div class="profile-tabs">
+                                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                                            
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#work" role="tab" data-toggle="tab">
+                                                    <i class="material-icons">palette</i> Work
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#connections" role="tab" data-toggle="tab">
+                                                    <i class="material-icons">people</i> History
+                                                </a>
+                                            </li>
+                                            <!-- <li class="nav-item">
+                                                <a class="nav-link" href="#media" role="tab" data-toggle="tab">
+                                                    <i class="material-icons">camera</i> Media
+                                                </a>
+                                            </li> -->
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content tab-space">
+                                <div class="tab-pane active work" id="work">
+                
+                                        <div *ngIf="artworks" class="row">
+                                                <div *ngFor="let artwork of artworks" class="col-md-4">
+                                                    <div class="card card-profile card-plain">
+                                                        <div class="card-header card-header-image">
+                                                            <button style="border: 0; cursor: pointer;" (click)="fullScreen(artwork.imageUrl)">
+                                                                <img class="img" [src]="artwork.imageUrl">
+                                                            </button>
+                                                        </div>
+                                                        <div class="card-body">
+                                                            <h4 > <a class="name-link"> <b>{{artwork.title}}</b>, {{artwork.year}}</a></h4>
+                                                            <h6 class="card-category text-muted"> {{artwork.dimensions}}</h6>
+                                                            <h6 class="card-category text-muted"> {{artwork.askingPrice}}</h6>
+                                                        </div>
+                                                        <!-- <div class="card-footer justify-content-center">
+                                                            <a href="#pablo" class="btn btn-just-icon btn-dribbble btn-round"><i class="fa fa-dribbble"></i></a>
+                                                            <a href="#pablo" class="btn btn-just-icon btn-twitter btn-round"><i class="fa fa-twitter"></i></a>
+                                                        </div> -->
+                                                    </div>
+                                                </div>
+                                        </div>
+                
+                                        <!-- <div class="col-md-7 ml-auto mr-auto ">
+                                            <h4 class="title">Latest Collections</h4>
+                                            <div class="row collections">
+                                                <div class="col-md-6">
+                                                    <div class="card card-background" style="background-image: url('../assets/img/kit/pro/examples/mariya-georgieva.jpg')">
+                                                        <a href="#pablo"></a>
+                                                        <div class="card-body">
+                                                            <label class="badge badge-warning">Spring 2016</label>
+                                                            <a href="#pablo">
+                                                                <h2 class="card-title">Stilleto</h2>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card card-background" style="background-image: url('../assets/img/kit/pro/examples/clem-onojeghuo.jpg')">
+                                                        <a href="#pablo"></a>
+                                                        <div class="card-body">
+                                                            <label class="badge badge-info">Spring 2016</label>
+                                                            <a href="#pablo">
+                                                                <h2 class="card-title">High Heels</h2>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card card-background" style="background-image: url('../assets/img/kit/pro/examples/olu-eletu.jpg')">
+                                                        <a href="#pablo"></a>
+                                                        <div class="card-body">
+                                                            <label class="badge badge-danger">Summer 2016</label>
+                                                            <a href="#pablo">
+                                                                <h2 class="card-title">Flats</h2>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card card-background" style="background-image: url('../assets/img/kit/pro/examples/darren-coleshill.jpg')">
+                                                        <a href="#pablo"></a>
+                                                        <div class="card-body">
+                                                            <label class="badge badge-success">Winter 2015</label>
+                                                            <a href="#pablo">
+                                                                <h2 class="card-title">Men's Sneakers</h2>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 mr-auto ml-auto stats">
+                                            <h4 class="title">Stats</h4>
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <b>60</b> Products</li>
+                                                <li>
+                                                    <b>4</b> Collections</li>
+                                                <li>
+                                                    <b>331</b> Influencers</li>
+                                                <li>
+                                                    <b>1.2K</b> Likes</li>
+                                            </ul>
+                                            <hr>
+                                            <h4 class="title">About his Work</h4>
+                                            <p class="description">French luxury footwear and fashion. The footwear has incorporated shiny, red-lacquered soles that have become his signature.</p>
+                                            <hr>
+                                            <h4 class="title">Focus</h4>
+                                            <span class="badge badge-primary">Footwear</span>
+                                            <span class="badge badge-rose">Luxury</span>
+                                        </div> -->
+                
+                                </div>
+                                <div class="tab-pane connections" id="connections">
+                                    <div class="row">
+                
+                                        <div *ngFor="let exhibition of exhibitionHistory" class="col-md-12">
+                                            <label style="font-size: 2rem; margin-top: 20px;">- <b>{{exhibition.year}}</b>  {{exhibition.venue}}, <i>"{{exhibition.title}}"</i></label> 
+                                        </div>
+                
+                                </div>
+                                
+                            </div>
+                
+                        </div>
+                    </div>
+                </div>
+                
+                </div>
+        </div>
+
+</div>
+
+
+
+<!-- Full Screen Image Modal -->
+<div class="modal fade" id="fullScreenModal" tabindex="-1" role="dialog" aria-labelledby="fullScreenLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="padding: 30px;">
+        <img *ngIf="fullScreenImageUrl" id="fullScreenImg" [src]="fullScreenImageUrl">
+      </div>
+    </div>
+    
+</div>
+

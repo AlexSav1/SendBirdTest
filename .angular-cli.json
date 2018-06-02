@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "sendbird-test"
+    "name": "con-artist-main-site"
   },
   "apps": [
     {
@@ -19,9 +19,17 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "styles.css",
+        "./assets/css/material-kit.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "./assets/js/core/jquery.min.js",
+        "./assets/js/core/popper.min.js",
+        "./assets/js/bootstrap-material-design.js",
+        "./assets/assets-for-demo/js/modernizr.js",
+        "./assets/assets-for-demo/js/vertical-nav.js",
+        "./assets/js/material-kit.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

@@ -1,0 +1,60 @@
+.name-link:hover {
+    text-decoration: underline;
+}
+
+#profile-pic {
+    min-height: 150px;
+    max-height: 150px;
+    max-width: 150px;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+#artistCarousel {
+    min-height: 400px;
+}
+
+.background {
+    background-color: white;
+}
+
+.square {
+    width: 475px;
+    height: 358px;
+    object-fit: cover;
+}
+
+.img-holder {
+    position: relative; 
+    display: inline-block;
+}
+
+.img-holder img {
+    display: block;
+}
+
+.img-holder p {
+    position: absolute; 
+    top: 50%; 
+    left: 0; 
+    right: 0; 
+    transform: translate(0, -50%); 
+    text-align: center; 
+    color: #fff; 
+    font-size: 50px;
+}
+
+.img-holder p.vote {
+    position: absolute; 
+    top: 50%; 
+    left: 0; 
+    right: 0; 
+    transform: translate(0, -50%); 
+    text-align: center; 
+    color: #fff; 
+    font-size: 100px;
+}
+
+.shiney {
+    text-shadow: 0 0 15px;
+}

@@ -1,0 +1,391 @@
+
+
+<div class="background">
+    <div style="height: 20vh;"></div>
+    <!-- SOCIAL HEADER -->
+<div *ngIf="isSocial" class="page-header header-filter" style="background-image: url('assets/img/conPics/con26.png');">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h1 class="title">Social Artist Plan</h1>
+                <h4>Attend regular member’s only workshops and skill shares, register your work for group exhibitions, and get access to the shared studio and it’s equipment once a week. No storage.</h4>
+                <br>
+              
+                <br>
+  
+                <!-- <div class="col-md-8 ml-auto mr-auto"> -->
+                  <h2 class="title">$50/Month</h2>
+                  <!-- <h5>24 consecutive hours once a week on the day of your choosing.</h5>
+                  <h5>Great for those with full time day jobs looking to increase their artistic output.</h5>
+                  <h5>Can change regular day once a month.</h5> -->
+                  <br>
+                  <h6>Available Plans:</h6>
+                      <div class="buttons">
+                          <button *ngIf="!isSocial" (click)="showSocial()" class="btn btn-rose btn-round">Social</button>
+                          <button *ngIf="isSocial" disabled="true" class="btn btn-rose btn-round">Social</button>
+  
+                          <button *ngIf="!isEmerging" (click)="showEmerging()" class="btn btn-rose btn-round">Emerging</button>
+                          <button *ngIf="isEmerging" disabled="true" class="btn btn-rose btn-round">Emerging</button>
+  
+                          <button *ngIf="!isWorking" (click)="showWorking()" class="btn btn-rose btn-round">Working</button>
+                          <button *ngIf="isWorking" disabled="true" class="btn btn-rose btn-round">Working</button>
+  
+                      </div>
+              <!-- </div> -->
+            </div>
+        </div>
+    </div>
+  </div>
+  <!-- END SOCIAL HEADER -->
+  
+  <!-- EMERGING HEADER -->
+  <div *ngIf="isEmerging" class="page-header header-filter" style="background-image: url('assets/img/conPics/con13.jpg');">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 ml-auto mr-auto text-center">
+                  <h1 class="title">Emerging Artist Plan</h1>
+                  <h4>Evenings and Weekends. Most of us have a side hustle or get creative at night. This plan is for night owls and those working a day job. Limited storage.</h4><br>
+                
+                  <br>
+    
+                  <!-- <div class="col-md-8 ml-auto mr-auto"> -->
+                    <h2 class="title">$250/Month</h2>
+                    <!-- <h5>24 consecutive hours once a week on the day of your choosing.</h5>
+                    <h5>Great for those with full time day jobs looking to increase their artistic output.</h5>
+                    <h5>Can change regular day once a month.</h5> -->
+                    <br>
+                    <h6>Available Plans:</h6>
+                      <div class="buttons">
+                          <button *ngIf="!isSocial" (click)="showSocial()" class="btn btn-rose btn-round">Social</button>
+                          <button *ngIf="isSocial" disabled="true" class="btn btn-rose btn-round">Social</button>
+  
+                          <button *ngIf="!isEmerging" (click)="showEmerging()" class="btn btn-rose btn-round">Emerging</button>
+                          <button *ngIf="isEmerging" disabled="true" class="btn btn-rose btn-round">Emerging</button>
+  
+                          <button *ngIf="!isWorking" (click)="showWorking()" class="btn btn-rose btn-round">Working</button>
+                          <button *ngIf="isWorking" disabled="true" class="btn btn-rose btn-round">Working</button>
+  
+                      </div>
+                <!-- </div> -->
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- END EMERGING HEADER -->
+  
+    <!-- WORKING HEADER -->
+  <div *ngIf="isWorking" class="page-header header-filter" style="background-image: url('assets/img/conPics/con14.jpg');">
+      <div class="container">
+          <div class="row">
+              <div class="col-md-8 ml-auto mr-auto text-center">
+                  <h1 class="title">Working Artist Plan</h1>
+                  <h4>You’re a pro. You clock into the studio early and rule your own 9-5 world. 24/7 access and priority storage.</h4><br>
+                
+                  <br>
+    
+                  <!-- <div class="col-md-8 ml-auto mr-auto"> -->
+                    <h2 class="title">$400/Month</h2>
+                    <!-- <h5>24 consecutive hours once a week on the day of your choosing.</h5>
+                    <h5>Great for those with full time day jobs looking to increase their artistic output.</h5>
+                    <h5>Can change regular day once a month.</h5> -->
+                    <br>
+                    <h6>Available Plans:</h6>
+                      <div class="buttons">
+                          <button *ngIf="!isSocial" (click)="showSocial()" class="btn btn-rose btn-round">Social</button>
+                          <button *ngIf="isSocial" disabled="true" class="btn btn-rose btn-round">Social</button>
+  
+                          <button *ngIf="!isEmerging" (click)="showEmerging()" class="btn btn-rose btn-round">Emerging</button>
+                          <button *ngIf="isEmerging" disabled="true" class="btn btn-rose btn-round">Emerging</button>
+  
+                          <button *ngIf="!isWorking" (click)="showWorking()" class="btn btn-rose btn-round">Working</button>
+                          <button *ngIf="isWorking" disabled="true" class="btn btn-rose btn-round">Working</button>
+  
+                      </div>
+                    <!-- <button (click)="onPurchaseSocial()" class="btn btn-primary btn-lg" type="button">
+                          Purchase
+                    </button> -->
+                <!-- </div> -->
+              </div>
+          </div>
+      </div>
+    </div>
+    <!-- END WORKING HEADER -->
+  
+  <div class="main main-raised" style="margin-bottom: 0px; margin-top: 30px;">    
+      <div class="container">
+  
+          <!-- <br>
+          <br> -->
+  
+          <!-- PLANS -->
+          <!-- <div class="pricing-1 section-image" style="background-image: url('../assets/img/conPics/con11.jpg')" id="pricing-1">
+              <div class="container">
+                  <div class="row">
+                    <div class="col-lg-3 col-md-6">
+                        <div class="card card-pricing card-plain">
+                            <div class="card-body ">
+                                <h6 class="card-category">Residency</h6>
+                                <div class="icon">
+                                    <i class="material-icons">account_balance</i>
+                                </div>
+                                <h3 class="card-title">$0</h3>
+                                <p class="card-description">
+                                    This is good if your company size is 99+ persons.
+                                </p>
+                                <a href="#pablo" class="btn btn-white btn-round">Apply</a>
+                            </div>
+                        </div>
+                    </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div [ngClass]="{'card-plain': !isSocial, 'card-raised': isSocial}" class="card card-pricing card-plain">
+                              <div class="card-body ">
+                                  <h6 class="card-category">Social Artist</h6>
+                                  <div class="icon">
+                                      <i class="material-icons">weekend</i>
+                                  </div>
+                                  <h3 class="card-title">$50</h3>
+                                  <p class="card-description">
+                                      Members enjoy unlimited access to workshops, submissions to group shows, Sunday studio access, and oppotunity to network with 8-years.
+                                  </p>
+                                  
+                                  <button *ngIf="!isSocial" (click)="showSocial()" class="btn btn-rose btn-round">Select</button>
+                                  <button *ngIf="isSocial" disabled="true" class="btn btn-rose btn-round">Selected</button>
+  
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                            <div [ngClass]="{'card-plain': !isEmerging, 'card-raised': isEmerging}" class="card card-pricing">
+                              <div class="card-body ">
+                                  <h6 class="card-category">Emerging Artist</h6>
+                                  <div class="icon icon-rose">
+                                      <i class="material-icons">home</i>
+                                  </div>
+                                  <h3 class="card-title">$250</h3>
+                                  <p class="card-description">
+                                      Evenings & weekends (weekdays ater 7pm/weekends all day ).
+                                  </p>
+                                  <button *ngIf="!isEmerging" (click)="showEmerging()" class="btn btn-rose btn-round">Select</button>
+                                  <button *ngIf="isEmerging" disabled="true" class="btn btn-rose btn-round">Selected</button>
+                              </div>
+                          </div>
+                      </div>
+                      <div class="col-lg-3 col-md-6">
+                          <div [ngClass]="{'card-plain': !isWorking, 'card-raised': isWorking}" class="card card-pricing">
+                              <div class="card-body ">
+                                  <h6 class="card-category">Working Artists</h6>
+                                  <div class="icon">
+                                      <i class="material-icons">business</i>
+                                  </div>
+                                  <h3 class="card-title">$400</h3>
+                                  <p class="card-description">
+                                      Members enjoy unlimited 24 hour access to the Collective.
+                                  </p>
+                                  <button *ngIf="!isWorking" (click)="showWorking()" class="btn btn-rose btn-round">Select</button>
+                                  <button *ngIf="isWorking" disabled="true" class="btn btn-rose btn-round">Selected</button>
+  
+                              </div>
+                          </div>
+                      </div>
+            
+                  </div>
+              </div>
+            </div> -->
+          <!-- END PLANS -->
+  
+          <!-- <div class="section text-center"> -->
+              <div class="row">
+                  <div class="col-md-8 ml-auto mr-auto">
+                      <!-- <h2 class="title">Purchase</h2> -->
+                      <!-- <h5 class="description">You will use this email address to login in the future. If you use a gmail account you will be able to quickly login through google.</h5> -->
+                      <!-- <button *ngIf="loggedIntoGoogle == false" type="button" class="btn btn-info btn-lg" id="googleBtn">Register with Google</button> -->
+  
+                      <!-- <button *ngIf="loggedIntoGoogle == true" (click)="onPurchaseSocial()" class="btn btn-primary btn-lg" type="button">
+                          Purchase
+                      </button> -->
+  
+                      <div *ngIf="loggedIntoGoogle == false">
+                          <!-- <h5 class="description">Email</h5> -->
+                          <br>
+                          <br>
+                          <form (submit)="onSubmit()">
+  
+                              <div class="form-group">
+                                  <label>Full Name</label>
+                                  <input type="text" [(ngModel)]="fullName" class="form-control" placeholder="Add Name" name="title">
+                             </div>
+                                    
+                              <div class="form-group">
+                                  <label>Bio</label>
+                                  <textarea type="text" [(ngModel)]="bio" class="form-control" placeholder="Add bio" name="onView"></textarea>
+                              </div>
+                                    
+                              <!-- <div class="form-group">
+                                  <label>Exhibition History</label>
+                                  <input type="text" [(ngModel)]="galleryParty" class="form-control" placeholder="Add time of event" name="galleryParty">
+                              </div> -->
+  
+                              <br>
+                              <!-- <label><b> Artwork: </b></label>
+  
+                              <div *ngFor="let artwork of artworks">
+                                  <div class="form-group">
+                                      <label>Artwork {{artworks.length}}</label>
+                                      <input type="text" [(ngModel)]="artwork.title" class="form-control" placeholder="Title" name="artworkTitle">
+                                      <input type="text" [(ngModel)]="artwork.year" class="form-control" placeholder="Year" name="artworkYear">
+                                      <input type="text" [(ngModel)]="artwork.askingPrice" class="form-control" placeholder="Venue" name="artworkPrice">
+                                  </div>
+  
+                                  <label>Upload File</label>
+                                  <input type="file" accept=".jpg, .jpeg, .png" (change)="onChange($event)">
+                                  <p class="help-block">Only png and jpg allowed</p>
+                              </div>
+  
+                              <button (click)="addArtwork()" class="btn btn-fab btn-primary btn-round" type="button">
+                                  <i class="material-icons">add</i>
+                              </button>
+  
+                              <button (click)="testArtwork()" class="btn btn-primary btn-lg" type="button">
+                                      Test Log
+                              </button>
+  
+                              <br> -->
+                              <!-- <label><b> Exhibition History: </b></label>
+  
+                              <button (click)="addExhibition()" class="btn btn-fab btn-primary btn-round" type="button">
+                                  <i class="material-icons">add</i>
+                              </button>
+  
+                              <div *ngFor="let exhibition of exhibitionHistory">
+                                      <label>{{exhibition.title}}</label>
+                                      <label>{{exhibition.year}}</label>
+                                      <label>{{exhibition.venue}}</label>
+                                      <div class="togglebutton">
+                                          <label>
+                                              Group Show
+                                              <input [(ngModel)]="exhibition.isSolo" type="checkbox" checked="" name="isSolo">
+                                              <span class="toggle"></span>
+                                              Solo Show
+                                          </label>
+                                      </div>
+                              </div>
+  
+                              <div *ngIf="showNewExhibitionForm" class="form-group card card-raised" style="padding: 50px;">
+                                  <label>New Exhibition</label>
+                                  <input type="text" [(ngModel)]="newExhibition.title" class="form-control" placeholder="Title" name="exhibitionTitle">
+                                  <input type="text" [(ngModel)]="newExhibition.year" class="form-control" placeholder="Year" name="exhibitionYear">
+                                  <input type="text" [(ngModel)]="newExhibition.venue" class="form-control" placeholder="Venue" name="exhibitionVenue">
+                                  <div class="togglebutton">
+                                      <label>
+                                          Group Show
+                                          <input [(ngModel)]="newExhibition.isSolo" type="checkbox" checked="" name="isSolo">
+                                          <span class="toggle"></span>
+                                          Solo Show
+                                      </label>
+                                  </div>
+  
+                                  <button (click)="saveExhibition()" class="btn btn-primary btn-lg" type="button">
+                                          Add Exhibition
+                                  </button>
+  
+                              </div>
+  
+                              <button (click)="testExhibition()" class="btn btn-primary btn-lg" type="button">
+                                      Test Log
+                              </button>
+                              <br>
+  
+                              <br> -->
+                              <!-- <label><b> Social Links: </b></label>
+                              
+                              <div class="form-group">
+                                  <label>Facebook</label>
+                                  <input class="form-control" [(ngModel)]="facebookLink" placeholder="Add facebook link" name="facebookLink">
+                              </div>
+  
+                              <div class="form-group">
+                                  <label>Twitter</label>
+                                  <input class="form-control" [(ngModel)]="twitterLink" placeholder="Add twitter link" name="twitterLink">
+                              </div>
+  
+                              <div class="form-group">
+                                  <label>Instagram</label>
+                                  <input class="form-control" [(ngModel)]="instagramLink" placeholder="Add instagram link" name="instagramLink">
+                              </div> -->
+                                    
+                              <!-- <div class="form-group"> -->
+                                  <!-- <label>Upload File</label>
+                                  <input type="file" accept=".jpg, .jpeg, .png" (change)="onChange($event)">
+                                  <p class="help-block">Only png and jpg allowed</p> -->
+                              <!-- </div> -->
+  
+                              <div class="form-group">
+                                  <input name="email" type="email" placeholder="Your Email..." [(ngModel)]="userEmail" class="form-control">
+                              </div>
+                              <button (click)="onPurchaseSocial()" class="btn btn-primary btn-lg" type="button">
+                                  Purchase
+                              </button>
+  
+                              <!-- <input type="submit" class="btn btn-primary" value="submit"> -->
+                              
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          <!-- </div> -->
+      </div>
+  
+  </div>
+</div>
+
+
+
+<!-- Alert Modal -->
+<div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="alertModalLabel">{{alertText}}</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-primary" data-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Success Redirect Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="alertModalLabel">Your payment was successfully received. Welcome to the collective! Go to your dashboard to see your current payment info and plan.</h5>
+            </div>
+            <div class="modal-footer">
+              <button routerLink="/dashboard" type="button" class="btn btn-primary" data-dismiss="modal">My Dashboard</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+<!-- <div class="main main-raised">
+  
+  <div class="container">
+      <div class="section text-center">
+          <div class="row">
+              <div class="col-md-8 ml-auto mr-auto">
+                  <h2 class="title">$129/Month</h2>
+                  <h5 class="description">24 consecutive hours once a week on the day of your choosing.</h5>
+                  <h5 class="description">Great for those with full time day jobs looking to increase their artistic output.</h5>
+                  <h5 class="description">Can change regular day once a month.</h5>
+                  <button routerLink="/dashboard" class="btn btn-primary btn-lg" type="button">
+                        Purchase
+                  </button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+</div> -->
+

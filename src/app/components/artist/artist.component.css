@@ -1,0 +1,13 @@
+#profile-pic {
+  min-height: 150px;
+  object-fit: cover;
+}
+
+#fullScreenImg {
+  width:100%; height:100%; 
+  object-fit: contain;
+}
+
+.background {
+  background-color: white;
+}

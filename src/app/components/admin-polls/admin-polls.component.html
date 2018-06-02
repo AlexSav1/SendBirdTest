@@ -1,0 +1,60 @@
+<div class=" " style="background-color: black;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h1 class="title" style="color: black;">Admin</h1>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  <div class="container">
+      <div style="margin-top: 50px;">
+          <button routerLink="/admin/events" class="btn btn-primary">Events</button>
+          <button routerLink="/admin/artists" class="btn btn-primary">Artists</button>
+          <button (click)="logout()" class="btn btn-primary">Log Out</button>
+      </div>
+  </div>
+  
+  <app-admin-poll-form (newPoll)="onNewPoll($event)"></app-admin-poll-form>
+  <br>
+  <br>
+  <div class="container">
+  
+    <h1>Current Polls</h1>
+  
+    <h3 *ngIf="!polls">No Active Polls</h3>
+  
+    <!-- <ul *ngIf="events" class="list-group">
+      <li *ngFor="let event of events" class="list-group-item">
+        <h3>{{event.title}}</h3>
+        <img [src]="event.imageUrl" alt="">
+        <br>
+        <br>
+        <p><b>On View: {{event.onView}}</b></p>
+        <p>{{event.bio}}</p>
+        <button (click)="deleteEvent(event)" class="btn btn-danger mr-3">Delete Event</button>
+      </li>
+      <br>
+    </ul> -->
+  
+    <div *ngIf="polls" class="row">
+      <div *ngFor="let poll of polls" class="col-xl-12">
+          <div class="card card-blog">
+              <div class="card-body">
+                  <h3 class="category text-gray">{{poll.title}}</h3>
+                  <div *ngFor="let choice of poll.choices">
+                    <h4>{{choice.title}}</h4>
+                    <p>{{choice.description}}</p>
+                    <h6 *ngIf="choice.votes">Votes: {{choice.votes}}</h6>
+                    <h6 *ngIf="!choice.votes">Votes: 0</h6>
+                    <br>
+                  </div>
+                  <button (click)="deletePoll(poll)" class="btn btn-danger btn-lg" type="button">Delete Poll</button>
+              </div>
+          </div>
+      </div>
+      
+    </div>
+
+  </div>

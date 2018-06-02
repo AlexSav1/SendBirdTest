@@ -1,0 +1,61 @@
+<div class="background">
+  <div style="height: 30vh;"></div>
+
+  <div class="container">
+    <h1>Forum</h1>
+    <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#newThreadModal">Create New Thread</button>
+    
+
+    <div *ngFor="let thread of threads" class="col-xl-12">
+        <div class="card card-profile card-plain">
+            <!-- <div class="card-header card-header-image">
+                <a routerLink="/artist/{{artist._id}}">
+                    <img *ngIf="artist.profileImageUrl" class="img" [src]="artist.profileImageUrl">
+                    <img *ngIf="!artist.profileImageUrl" class="img" src="assets/img/kit/pro/placeholder.jpg">
+                </a>
+            </div> -->
+            <div class="card-body">
+                <h4 class="card-title"> <a class="name-link" routerLink="/forum/{{thread.url}}">{{thread.name}}</a></h4>
+                <!-- <h6 class="card-category text-muted">{{artist.artworks.length}} works of art</h6> -->
+            </div>
+            <!-- <div class="card-footer justify-content-center">
+                <a *ngIf="artist.facebookUrl" href="https://{{artist.facebookUrl}}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                <a *ngIf="artist.twitterUrl" href="https://{{artist.twitterUrl}}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                <a *ngIf="artist.instagramUrl" href="https://{{artist.instagramUrl}}" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+            </div> -->
+        </div>
+    </div>
+
+
+    <div style="height: 30vh;"></div>
+  </div>
+
+</div>
+
+<!-- New Thread Modal -->
+<div class="modal fade" id="newThreadModal" tabindex="-1" role="dialog" aria-labelledby="newThreadModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newThreadModalLabel">New Thread</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input name="title" type="text" placeholder="Title" [(ngModel)]="newThreadName" class="form-control">
+                </div>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+          <!-- <p style="position: absolute; left: 25px;">Not a member? <a (click)="onJoin()" routerLink="/plan"> Join</a> </p> -->
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+          <button (click)="createNewThread()" type="button" class="btn btn-danger" data-dismiss="modal">Create</button>
+        </div>
+      </div>
+    </div>
+</div>

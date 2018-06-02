@@ -1,0 +1,557 @@
+
+<div class="background">
+    <div style="height: 20vh;"></div>
+    <div class="container">
+        <div class="row">
+            <!-- JOIN -->
+            <div *ngIf="!authService.loggedIn()" class="col-lg-6 p-2">
+                <a routerLink="/plan">
+                    <img src="https://farm8.staticflickr.com/7521/15549172373_469b509c5f_o.gif" alt="">
+                </a>
+            </div>
+
+            <!-- POLL -->
+            <div *ngIf="authService.loggedIn()" class="col-lg-6 p-2">
+                <a href="#" data-toggle="modal" data-target="#pollModal">
+                    <div class="img-holder">
+                        <img class="img img-raised square" src="assets/img/conPics/con4.jpg">
+                        <p class="title vote">Vote!</p>
+                    </div>
+                </a>
+            </div>
+
+            <!-- RESIDENCY -->
+            <div *ngIf="!authService.loggedIn()" class="col-lg-6 p-2">
+                <img src="https://farm5.staticflickr.com/4607/26030160778_06140dee4b_o.jpg" alt="">
+            </div>
+
+            <!-- PUBLIC EVENTS -->
+            <div *ngIf="authService.loggedIn()" class="col-lg-6 p-2">
+                    <a routerLink="/events">
+                        <div class="img-holder">
+                            <img class="img img-raised square" src="assets/img/conPics/con3.jpg">
+                            <p class="title">Public Events</p>
+                        </div>
+                    </a>
+                </div>
+
+            
+            <div *ngFor="let event of publicEvents" class="col-lg-6 p-2">
+                <a *ngIf="!authService.loggedIn()" routerLink="/event/{{event._id}}">
+                    <img class="img img-raised square" [src]="event.imageUrl">
+                </a>
+            </div>
+            
+            <div *ngFor="let event of memberEvents" class="col-lg-6 p-2">
+                <a *ngIf="authService.loggedIn()" routerLink="/event/{{event._id}}">
+                    <img class="img img-raised square" [src]="event.imageUrl">
+                </a>
+            </div>
+
+            <!-- <div class="col-lg-6 p-2">
+                <img src="https://c1.staticflickr.com/5/4246/34910251472_0154c8fdb0_o.jpg" width="475" height="358" alt="Artist_spotlights">
+            </div>
+
+            <div *ngIf="resident" class="col-lg-6 p-2">
+                <a routerLink="/artist/{{resident._id}}">
+                    <div class="img-holder">
+                        <img *ngIf="resident.profileImageUrl" class="img img-raised square" [src]="resident.profileImageUrl">
+                        <img *ngIf="!resident.profileImageUrl" class="img img-raised square" src="assets/img/kit/pro/placeholder.jpg" />
+                        <p class="title shiney">{{resident.fullName}}</p>
+                    </div>
+                </a>
+            </div>
+
+            <div *ngFor="let artist of artists" class="col-lg-6 p-2">
+                <a routerLink="/artist/{{artist._id}}">
+                    <div class="img-holder">
+                        <img *ngIf="artist.profileImageUrl" class="img img-raised square" [src]="artist.profileImageUrl">
+                        <img *ngIf="!artist.profileImageUrl" class="img img-raised square" src="assets/img/kit/pro/placeholder.jpg" />
+                        <p class="title">{{artist.fullName}}</p>
+                    </div>
+                </a>
+            </div> -->
+
+        </div>
+    </div>
+
+    <div style="height: 20vh;"></div>
+
+    <div *ngIf="!authService.loggedIn()" class="container">
+
+            <h1 >Need Help With a Project?</h1>
+            <h4>Let us know what you need help with and we’ll connect you with the perfect person to help you bring your vision to life.</h4>
+            <br>
+
+            <form (submit)="onProjectSubmit()">
+              <div class="form-group">
+                <label>Name</label>
+                <input type="text" [(ngModel)]="projectName" class="form-control" placeholder="Add Name" name="title">
+              </div>
+          
+              <div class="form-group">
+                  <label>Contact Info</label>
+                  <input type="text" [(ngModel)]="projectEmail" class="form-control" placeholder="Email" name="email">
+                  <input type="text" [(ngModel)]="projectPhone" class="form-control" placeholder="Phone Number (optional)" name="phone">
+              </div>
+
+              <div class="form-group">
+                <label>Proposal</label>
+                <textarea class="form-control" [(ngModel)]="projectProposal" placeholder="Describe Proposal" name="proposal"></textarea>
+              </div>
+          
+              <div class="form-group">
+                  <label>Budget</label>
+                  <input type="text" [(ngModel)]="projectBudget" class="form-control" placeholder="Project Budget" name="budget">
+              </div>
+          
+              <input type="submit" class="btn btn-danger" value="submit">
+            </form>
+    </div>
+
+    <div style="height: 50px;"></div>
+</div>
+
+<!-- Email Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Enter your email address and we will send you a login link</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+    
+                <form (submit)="sendEmail()">
+                    <div class="form-group">
+                        <input name="email" type="email" placeholder="Your Email..." [(ngModel)]="userEmail" class="form-control">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+              <p style="position: absolute; left: 25px;">Not a member? <a (click)="onJoin()" routerLink="/plan"> Join</a> </p>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button (click)="sendEmail()" type="button" class="btn btn-danger" data-dismiss="modal">Send Email</button>
+            </div>
+          </div>
+        </div>
+</div>
+    
+      <!-- Alert Modal -->
+    <div class="modal fade" id="alertModal" tabindex="-1" role="dialog" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <!-- <h5 class="modal-title" id="alertModalLabel">No account found. Please purchase a plan to create your account.</h5> -->
+              <h5 class="modal-title" id="alertModalLabel">{{alertText}}</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <!-- Google Modal -->
+    <div class="modal fade" id="googleModal" tabindex="-1" role="dialog" aria-labelledby="googleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="alertModalLabel">No account found. Please purchase a plan to create your account.</h5>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+                </div>
+              </div>
+            </div>
+    </div>
+    
+    <!-- Poll Modal -->
+    <div class="modal fade" id="pollModal" tabindex="-1" role="dialog" aria-labelledby="pollModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+                <div class="row">
+                        <div *ngFor="let poll of polls" class="modal-content" style="padding: 10px;">
+                                <div class="modal-header">
+                                    <h3 class="category text-gray">{{poll.title}}</h3>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                        <br>
+                                        <div *ngFor="let choice of poll.choices">
+                                          <h4>{{choice.title}}</h4>
+                                          <p class="card-description">{{choice.description}}</p>
+                                          <div *ngIf="didVote(poll)">
+                                            <div class="progress progress-line-info">
+                                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="choice.votePercentage" aria-valuemin="0" aria-valuemax="100" [style.width]="choice.votePercentage + '%'">
+                                                    <!-- <span class="sr-only">60% Complete</span> -->
+                                                </div>
+                                             </div>
+                                            <h6 *ngIf="choice.votes">{{choice.votePercentage | number: '1.0-0'}}%</h6>
+                                            <h6 *ngIf="!choice.votes">0%</h6>
+                                          </div>
+                                          
+                                          <button *ngIf="!didVote(poll)" (click)="onVote(poll, choice)" class="btn btn-rose btn-lg" type="button">Vote</button>
+                                          <br>
+                                          <br>
+                                        </div>
+                                </div>
+                                
+                        </div>
+                </div>
+            </div>
+    </div>
+
+    <!-- OLD LANDING HTML -->
+
+   <!-- <div style="margin-top: 50px;" class="header-3">
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol style="margin-bottom: 70px;" class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+          </ol>
+          <div class="carousel-inner">
+              <div class="carousel-item active">
+                    <div class="page-header header-filter" style="background-image: url('assets/img/conPics/con29.jpg');">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 ml-auto mr-auto text-center">
+                                    <h1 class="title">Con Artist Collective</h1>
+                                    <h4>Con Artist is an art collective, community, workspace & gallery. Our shared venue and studio hosts events, collaborative exhibitions, group projects, life drawing, and more! We are a platform for artists to network, gain exposure, and share skills and knowledge with one another.</h4><br>
+                                  
+                                    <br>
+                                    
+                                    <button *ngIf="!authService.loggedIn()" type="button" class="btn btn-info btn-lg" id="googleBtn">Log in with Google</button>
+                                    <button *ngIf="!authService.loggedIn()" class="btn btn-danger btn-lg" type="button" data-toggle="modal" data-target="#exampleModal">
+                                        Log In
+                                    </button>
+                                    <h6>Connect with us on:</h6>
+                                    <div class="buttons">
+                                        <a href="https://twitter.com/ConArtistNYC" target="_blank" class="btn btn-just-icon btn-white btn-link btn-lg">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                        <a href="https://www.facebook.com/conartistcollective/" target="_blank" class="btn btn-just-icon btn-white btn-link btn-lg">
+                                            <i class="fa fa-facebook-square"></i>
+                                        </a>
+                                        <a href="https://www.instagram.com/conartistnyc/" target="_blank" class="btn btn-just-icon btn-white btn-link btn-lg">
+                                            <i class="fa fa-instagram"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+              </div>
+              <div class="carousel-item">
+                  <div class="page-header header-filter" style="background-image: url('assets/img/conPics/con33.jpg');">
+                      <div class="container">
+                          <div class="row">
+                              <div class="col-md-8 ml-auto mr-auto text-center">
+                                  <h1 class="title">Our Online Store</h1>
+                                  <h4>Support independent artists and designers! Shop various (mostly handmade) goods, apparel, and prints from the collective. Members at every level can consign their wares here on our online shop and brick and mortar store in the Lower East Side of Manhattan.</h4><br>
+                                
+                                  <br>
+                                  <button routerLink="/store" type="button" class="btn btn-danger btn-lg">Shop</button>
+
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="carousel-item">
+                    <div class="page-header header-filter" style="background-image: url('assets/img/conPics/con3.jpg');">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-8 ml-auto mr-auto text-center">
+                                    <h1 class="title">Residencies</h1>
+                                    <h4>A fully sponsored 3 month studio stay with 2-week showcase exhibition at the end. Free to apply to with zero hidden fees.</h4><br>
+                                  
+                                    <br>
+                                    <button type="button" class="btn btn-danger btn-lg">Apply Now</button>
+  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+              </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <i class="material-icons">keyboard_arrow_left</i>
+              <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <i class="material-icons">keyboard_arrow_right</i>
+              <span class="sr-only">Next</span>
+          </a>
+      </div> 
+  </div>
+
+
+    <div class="main main-raised">
+        <div *ngIf="!authService.loggedIn()" class="container">
+            <div class="section text-center">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <h2 class="title">Not a Member?</h2>
+                        <h5 class="description">Joining Con Artist Collective means becoming part of an active community of over 700 creatives from all walks of life, and all over the world.</h5>
+                        <button routerLink="/plan" class="btn btn-danger btn-lg" type="button">
+                            Join the Collective
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <div *ngIf="authService.loggedIn()" class="container">
+            <div class="section text-center">
+                <div class="row">
+                    <div class="col-md-8 ml-auto mr-auto">
+                        <h2 class="title">Good to see you {{fullName}}!</h2>
+                        <h5 class="description">Go to your dashboard to see your payment information and edit your profile.</h5>
+                        <button routerLink="/dashboard" class="btn btn-danger btn-lg" type="button">
+                                My Dashboard
+                        </button>
+                    </div>
+                </div>
+
+                <br>
+                <br>
+
+                <h2 class="title">What should our next event be?</h2>
+
+                <div *ngIf="polls" class="row">
+                        <div *ngFor="let poll of polls" class="col-xl-12">
+                            <div class="card card-blog">
+                                <div class="card-body">
+                                    <h3 class="category text-gray">{{poll.title}}</h3>
+                                    <br>
+                                    <div *ngFor="let choice of poll.choices">
+                                      <h4>{{choice.title}}</h4>
+                                      <p class="card-description">{{choice.description}}</p>
+                                      <div *ngIf="didVote(poll)">
+                                        <div class="progress progress-line-info">
+                                            <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="choice.votePercentage" aria-valuemin="0" aria-valuemax="100" [style.width]="choice.votePercentage + '%'">
+                                            </div>
+                                         </div>
+                                        <h6 *ngIf="choice.votes">{{choice.votePercentage | number: '1.0-0'}}%</h6>
+                                        <h6 *ngIf="!choice.votes">0%</h6>
+                                      </div>
+                                      
+                                      <button *ngIf="!didVote(poll)" (click)="onVote(poll, choice)" class="btn btn-rose btn-lg" type="button">Vote</button>
+                                      <br>
+                                      <br>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+            </div>
+        </div>
+        
+
+    </div>
+            
+
+
+
+  <div class="team-4 section-image" style="background-image: url('assets/img/conPics/con26.png');">
+      <div class="container">
+          <div class="row">
+
+              <div class="col-md-12">
+                  <h2 class="title text-center">Upcoming Events</h2>
+                  <br>
+                  <div *ngIf="events" class="row">
+                      <div *ngFor="let event of events" class="col-md-4">
+                          <div class="card card-blog">
+                              <div class="card-header card-header-image">
+                                  <a routerLink="/event/{{event._id}}">
+                                      <img class="img img-raised" [src]="event.imageUrl">
+                                  </a>
+                              </div>
+                              <div class="card-body">
+                                  <h6 class="category text-info">On View: {{event.onView}}</h6>
+                                  <h6 class="card-category text-info">Gallery Party: {{event.galleryParty}}</h6>
+                                  <h4 class="card-title">
+                                      <a class="name-link" routerLink="/event/{{event._id}}">{{event.title}}</a>
+                                  </h4>
+                                  <p class="card-description">
+                                      {{event.bio}}
+                                  </p>
+                                  <a class="name-link" routerLink="/event/{{event._id}}"> Read More </a>
+                              </div>
+                          </div>
+                      </div>
+                      
+                  </div>
+                  
+              </div>
+          </div>
+          <div style="display: flex; align-items: center; justify-content: center;">
+              <a class="name-link" routerLink="/events" style="color: white;"> See All </a>
+          </div>
+      </div>
+  </div>
+
+
+            <div class="section text-center" style="background-color: white;">
+
+                    <h2 class="title" style="color: black;">Current Resident</h2>
+
+                    <div class="row"> 
+                            <div *ngIf="resident" class="col-xl-12 mx-auto" style="text-align: center;">
+                                    <div class="card card-profile card-plain">
+                                        <div class="card-header card-avatar">
+                                            <a routerLink="/artist/{{resident._id}}">
+                                                <img *ngIf="resident.profileImageUrl" id="profile-pic" class="img" [src]="resident.profileImageUrl"/>
+                                                <img *ngIf="!resident.profileImageUrl" id="profile-pic" class="img" src="assets/img/kit/pro/placeholder.jpg"/>
+                                            </a>
+                                        </div>
+                                        <div class="card-body">
+                                            <h4 class="card-title"> <a class="name-link" routerLink="/artist/{{resident._id}}">{{resident.fullName}}</a> </h4>
+                                            <p class="card-description">
+                                                {{resident.bio}}
+                                            </p>
+                                        </div>
+                                        <div class="card-footer justify-content-center">
+                                            <a *ngIf="resident.facebookUrl" href="https://{{resident.facebookUrl}}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                                            <a *ngIf="resident.twitterUrl" href="https://{{resident.twitterUrl}}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a *ngIf="resident.instagramUrl" href="https://{{resident.instagramUrl}}" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+                                        </div>
+                                    </div>
+                            </div>
+                    </div>
+
+                <h2 class="title" style="color: black;">Artist Spotlight</h2>
+
+                <div *ngIf="artists" id="artistCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner">
+                        <div *ngFor="let slide of artistSlides" class="carousel-item" [ngClass]="slide.index == 0 ? 'active' : '' ">
+                                <div class="tab-pane connections">
+                                        <div class="row">
+                                            <div *ngFor="let artist of slide.artists" class="col-md-5 ml-auto mr-auto">
+                                                <div class="card card-profile card-plain">
+                                                    <div class="row">
+                                                        <div class="col-md-5">
+                                                            <div >
+                                                                <a routerLink="/artist/{{artist._id}}">
+                                                                    <img *ngIf="artist.profileImageUrl" id="profile-pic" alt="Circle Image" class="img-raised rounded-circle img-fluid" [src]="artist.profileImageUrl" />
+                                                                    <img *ngIf="!artist.profileImageUrl" id="profile-pic" alt="Circle Image" class="img-raised rounded-circle img-fluid" src="assets/img/kit/pro/placeholder.jpg" />
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-7">
+                                                            <div class="card-body">
+                                                                <h4 class="card-title"> <a class="name-link" routerLink="/artist/{{artist._id}}">{{artist.fullName}}</a> </h4>
+                                                                <p class="card-description">
+                                                                    {{artist.bio}}
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                
+                                        </div>
+                                        
+                                </div>
+                        </div>
+                    </div>
+                    <a class="carousel-control-prev" href="#artistCarousel" role="button" data-slide="prev">
+                        <i class="material-icons" style="color: black;">keyboard_arrow_left</i>
+                        <span class="sr-only">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#artistCarousel" role="button" data-slide="next">
+                        <i class="material-icons" style="color: black;">keyboard_arrow_right</i>
+                        <span class="sr-only">Next</span>
+                    </a>
+                </div>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                        <a class="name-link" routerLink="/artists" style="color: black;"> See All </a>
+                </div>
+
+                
+            </div>
+
+            <div class="section" style="background-color: white;">
+                <div class="container">
+
+                    <h1>Need Help With a Project?</h1>
+                    <h4>Let us know what you need help with and we’ll connect you with the perfect person to help you bring your vision to life.</h4>
+                    <br>
+
+                    <form (submit)="onProjectSubmit()">
+                      <div class="form-group">
+                        <label>Name</label>
+                        <input type="text" [(ngModel)]="projectName" class="form-control" placeholder="Add Name" name="title">
+                      </div>
+                  
+                      <div class="form-group">
+                          <label>Contact Info</label>
+                          <input type="text" [(ngModel)]="projectEmail" class="form-control" placeholder="Email" name="email">
+                          <input type="text" [(ngModel)]="projectPhone" class="form-control" placeholder="Phone Number (optional)" name="phone">
+                      </div>
+
+                      <div class="form-group">
+                        <label>Proposal</label>
+                        <textarea class="form-control" [(ngModel)]="projectProposal" placeholder="Describe Proposal" name="proposal"></textarea>
+                      </div>
+                  
+                      <div class="form-group">
+                          <label>Budget</label>
+                          <input type="text" [(ngModel)]="projectBudget" class="form-control" placeholder="Project Budget" name="budget">
+                      </div>
+                  
+                      <input type="submit" class="btn btn-danger" value="submit">
+                    </form>
+                </div>
+            </div> -->
+        
+
+
+    <!--     *********    SIMPLE SUBSCRIBE LINE     *********      -->
+    <!-- <div class="subscribe-line subscribe-line-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="title">Get Tips &amp; Tricks every Week!</h3>
+                    <p class="description">
+                        Join our newsletter and get news in your inbox every week! We hate spam too, so no worries about this.
+                    </p>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-plain card-form-horizontal">
+                        <div class="card-body ">
+                            <form method="" action="">
+                                <div class="row">
+                                    <div class="col-lg-8 col-md-6 ">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text">
+                                                    <i class="material-icons">mail</i>
+                                                </span>
+                                            </div>
+                                            <input name="email" type="email" placeholder="Your Email..." [(ngModel)]="userEmail" class="form-control">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-6 ">
+                                        <button (click)="sendEmail()" type="button" class="btn btn-rose btn-round btn-block">Subscribe</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!--     *********   SIMPLE SUBSCRIBE LINE     *********      -->
+    
+    

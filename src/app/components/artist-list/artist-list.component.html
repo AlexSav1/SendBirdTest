@@ -1,0 +1,142 @@
+<!-- <div class="page-header header-filter" style="background-image: url('assets/img/conPics/con7.jpg');">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+              <h1 class="title">Artist Directory</h1>
+              <h4>Here you’ll find the bios, exhibition histories and portfolios of current members. Browse available work and fresh talent. See something you love? Smash that INQUIRE button!</h4>
+          </div>
+      </div>
+  </div>
+</div> -->
+<div class="team-2" id="team-2">
+    <div class="container">
+    
+            <!-- <div style="margin-top: 50px;" class="header-3"> -->
+                <div style="margin-top: 50px;">
+                    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                        <!-- <ol style="margin-bottom: 70px;" class="carousel-indicators">
+                            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+                            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+                        </ol> -->
+                        <div class="carousel-inner">
+                            <div *ngFor="let artist of featuredArtists; let i = index" class="carousel-item" [ngClass]="i == 0 ? 'active' : '' ">
+                                <a routerLink="/artist/{{artist._id}}">
+                                    <div *ngIf="artist.coverImageUrl" class="page-header" [ngStyle]="{'background-image': 'url(' + artist.coverImageUrl + ')'}"></div>
+                                    <div *ngIf="!artist.coverImageUrl" class="page-header" style="background-image: url('../assets/img/conPics/con17.JPG');"></div>
+                                </a>
+                                <h3 *ngIf="i == 0" class="name-tag">Artist In Residence: {{artist.fullName}}</h3>
+                                <h3 *ngIf="i > 0" class="name-tag">Featured Artist: {{artist.fullName}}</h3>
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+                            <i class="material-icons">keyboard_arrow_left</i>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+                            <i class="material-icons">keyboard_arrow_right</i>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div> 
+            </div>
+      
+        <form style="margin-bottom: 50px; margin-top: 50px;" (submit)="onSearch(searchText)">
+            <div class="form-group"> 
+                <label>Search</label>
+                <input type="text" class="form-control" [(ngModel)]="searchText" (ngModelChange)="onSearch($event)" placeholder="Search artists by name" name="search">
+            </div>
+        </form>
+        
+        <div *ngIf="artists" class="row">
+
+            <h3 *ngIf="artists.length == 0">No Results</h3>
+
+            <div *ngFor="let artist of artists" class="col-md-4">
+                <div class="card card-profile card-plain">
+                    <div class="card-header card-header-image">
+                        <a routerLink="/artist/{{artist._id}}">
+                            <img *ngIf="artist.profileImageUrl" class="img" [src]="artist.profileImageUrl">
+                            <img *ngIf="!artist.profileImageUrl" class="img" src="assets/img/kit/pro/placeholder.jpg">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title"> <a class="name-link" routerLink="/artist/{{artist._id}}">{{artist.fullName}}</a></h4>
+                        <h6 class="card-category text-muted">{{artist.artworks.length}} works of art</h6>
+                    </div>
+                    <div class="card-footer justify-content-center">
+                        <a *ngIf="artist.facebookUrl" href="https://{{artist.facebookUrl}}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                        <a *ngIf="artist.twitterUrl" href="https://{{artist.twitterUrl}}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                        <a *ngIf="artist.instagramUrl" href="https://{{artist.instagramUrl}}" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row justify-content-center">
+            <!-- PAGINATION -->
+            <div class="col-xl-12 mx-auto">
+                    <ul class="pagination pagination-info" style="min-width: 10px;">
+                        <li *ngIf="currentPage > 1" class="page-item">
+                            <a (click)="previousPage()" class="page-link"> prev</a>
+                        </li>
+                        <!-- <li class="page-item">
+                            <a href="javascript:void(0);" class="page-link">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="javascript:void(0);" class="page-link">2</a>
+                        </li>
+                        <li class="active page-item">
+                            <a href="javascript:void(0);" class="page-link">3</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="javascript:void(0);" class="page-link">4</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="javascript:void(0);" class="page-link">5</a>
+                        </li> -->
+                        <li *ngIf="morePages" class="page-item">
+                            <a (click)="nextPage()" class="page-link">next </a>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- <div class="team-1" id="team-1">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h2 class="title">Our Awesome Artists</h2>
+                <h5 class="description">This is the paragraph where you can write more details about your team. Keep you user engaged by providing meaningful information.</h5>
+            </div>
+        </div>
+        <div *ngIf="artists" class="row">
+
+            <div *ngFor="let artist of artists" class="col-md-3">
+                <div class="card card-profile card-plain">
+                    <div class="card-header card-avatar">
+                        <a href="#pablo">
+                            <img class="img" [src]="artist.imageUrl" />
+                        </a>
+                    </div>
+                    <div class="card-body ">
+                        <h4 class="card-title">{{artist.name}}</h4>
+                        <h6 class="card-category text-muted">Artist</h6>
+                        <p class="card-description">
+                          {{artist.bio}}
+                        </p>
+                    </div>
+                    <div class="card-footer justify-content-center">
+                        <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                        <a href="#pablo" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook-square"></i></a>
+                        <a href="#pablo" class="btn btn-just-icon btn-link btn-google"><i class="fa fa-google"></i></a>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div> -->

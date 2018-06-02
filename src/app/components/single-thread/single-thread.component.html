@@ -1,0 +1,71 @@
+<div class="background">
+    <div style="height: 30vh;"></div>
+  
+    <div class="container">
+      <h1>{{channel?.name}}</h1>
+
+      <button class="btn btn-primary btn-round" data-toggle="modal" data-target="#newMessageModal">New Message</button>
+  
+      <div *ngFor="let message of messages" class="col-xl-12">
+          <div class="card card-profile card-plain" style="text-align: left;">
+              <!-- <div class="card-header card-header-image">
+                  <a routerLink="/artist/{{artist._id}}">
+                      <img *ngIf="artist.profileImageUrl" class="img" [src]="artist.profileImageUrl">
+                      <img *ngIf="!artist.profileImageUrl" class="img" src="assets/img/kit/pro/placeholder.jpg">
+                  </a>
+              </div> -->
+              <div class="card-body">
+
+                <div class="row">
+                  <div class="col-md-1">
+                      <img *ngIf="message.sender.profileUrl" id="profile-pic" [src]="message.sender.profileUrl" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                  </div>               
+                  <div class="col-md-11" style="text-align: left;">
+                      <p class="card-category text-muted">{{message.sender.nickname}}</p>
+                      <p class="card-category text-muted">{{message.date}}</p>
+                  </div>     
+                </div>
+                  
+                  <h4 class="card-title">{{message.message}}</h4>
+              </div>
+              <!-- <div class="card-footer justify-content-center">
+                  <a *ngIf="artist.facebookUrl" href="https://{{artist.facebookUrl}}" class="btn btn-just-icon btn-link btn-facebook"><i class="fa fa-facebook"></i></a>
+                  <a *ngIf="artist.twitterUrl" href="https://{{artist.twitterUrl}}" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                  <a *ngIf="artist.instagramUrl" href="https://{{artist.instagramUrl}}" class="btn btn-just-icon btn-link btn-instagram"><i class="fa fa-instagram"></i></a>
+              </div> -->
+          </div>
+      </div>
+
+
+      <div style="height: 30vh;"></div>
+    </div>
+  
+</div>
+
+<!-- New Message Modal -->
+<div class="modal fade" id="newMessageModal" tabindex="-1" role="dialog" aria-labelledby="newMessageModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newMessageModalLabel">New Message</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form>
+                <div class="form-group">
+                    <label>Message</label>
+                    <input name="title" type="text" placeholder="Message" [(ngModel)]="newMessage" class="form-control">
+                </div>
+            </form>
+        </div>
+        
+        <div class="modal-footer">
+          <!-- <p style="position: absolute; left: 25px;">Not a member? <a (click)="onJoin()" routerLink="/plan"> Join</a> </p> -->
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+          <button (click)="onNewMessage()" type="button" class="btn btn-danger" data-dismiss="modal">Done</button>
+        </div>
+      </div>
+    </div>
+</div>

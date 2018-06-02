@@ -1,0 +1,43 @@
+<div class="container">
+
+  <h1>Add New Event</h1>
+
+  <form (submit)="onSubmit()">
+    <div class="form-group">
+      <label>Title</label>
+      <input type="text" [(ngModel)]="title" class="form-control" placeholder="Add Name" name="title">
+    </div>
+
+    <div class="form-group">
+        <label>On View</label>
+        <input type="text" [(ngModel)]="onView" class="form-control" placeholder="Add time on view" name="onView">
+    </div>
+
+    <div class="form-group">
+        <label>Gallery Party</label>
+        <input type="text" [(ngModel)]="galleryParty" class="form-control" placeholder="Add time of event" name="galleryParty">
+    </div>
+
+    <div class="form-group">
+      <label>Bio</label>
+      <textarea class="form-control" [(ngModel)]="bio" placeholder="Add Message" name="bio"></textarea>
+    </div>
+
+    <div class="form-check">
+        <label class="form-check-label">
+            <input class="form-check-input" [(ngModel)]="memberOnly" type="checkbox" value="" name="memberOnly"> Member Only
+            <span class="form-check-sign">
+                <span class="check"></span>
+            </span>
+        </label>
+    </div>
+
+    <div class="form-group">
+      <label>Upload File</label>
+      <input type="file" accept=".jpg, .jpeg, .png" (change)="onChange($event)">
+      <p class="help-block">Only png and jpg allowed</p>
+    </div>
+
+    <input type="submit" class="btn btn-primary" value="submit">
+  </form>
+</div>

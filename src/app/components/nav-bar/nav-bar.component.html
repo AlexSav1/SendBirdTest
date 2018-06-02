@@ -1,0 +1,122 @@
+<nav class="navbar navbar-absolute navbar-expand-lg" [ngClass]="{'navbar-transparent': !authService.isStoreRoute(), 'navbar-default': authService.isStoreRoute(), 'white-text': authService.isAdminRoute()}">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-translate">
+            <a style="padding: 0; margin: 0;" class="navbar-brand" routerLink="/"><img src="assets/img/conPics/logo.png"></a>
+            <button type="button" class="ml-auto navbar-toggler" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+        <div class="collapse navbar-collapse" id="navbar">
+            <ul class="navbar-nav" style="margin-left: 20px;">
+                <li class="nav-item">
+                    <a (click)="sidebarClose()" *ngIf="authService.loggedIn()" routerLink="/edit" class="nav-link">
+                        Dashboard
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a (click)="sidebarClose()" routerLink="/events" class="nav-link">
+                        Events
+                    </a>
+                </li> -->
+                <li class="nav-item">
+                    <a (click)="sidebarClose()" routerLink="/artists" class="nav-link">
+                        Artists
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a (click)="sidebarClose()" routerLink="/store" class="nav-link">
+                        Shop
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="authService.loggedIn()" (click)="sidebarClose()" routerLink="/forum" class="nav-link">
+                        Forum
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a *ngIf="!authService.loggedIn()" href="#" data-toggle="modal" data-target="#emailModal" class="nav-link" style="pointer-events: all">
+                        Log In
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a (click)="sidebarClose()" *ngIf="authService.loggedIn()" href="#" (click)="logOut()" class="nav-link" style="pointer-events: all">
+                        Log Out
+                    </a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="https://twitter.com/ConArtistNYC" target="_blank" class="btn btn-just-icon btn-black btn-link btn-lg">
+                        <i class="fa fa-twitter"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.facebook.com/conartistcollective/" target="_blank" class="btn btn-just-icon btn-black btn-link btn-lg">
+                        <i class="fa fa-facebook-square"></i>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="https://www.instagram.com/conartistnyc/" target="_blank" class="btn btn-just-icon btn-black btn-link btn-lg">
+                         <i class="fa fa-instagram"></i>
+                    </a>
+                </li>
+            </ul>
+                
+        </div>
+    </div>
+</nav>
+
+<!-- Email Modal -->
+<div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="emailModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="emailModalLabel">Enter your email address and we will send you a login link</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+    
+                <form (submit)="sendEmail()">
+                    <div class="form-group">
+                        <input name="email" type="email" placeholder="Your Email..." [(ngModel)]="userEmail" class="form-control">
+                    </div>
+                </form>
+            </div>
+            
+            <div class="modal-footer">
+              <p style="position: absolute; left: 25px;">Not a member? <a (click)="onJoin()" routerLink="/plan"> Join</a> </p>
+              <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> -->
+              <button (click)="sendEmail()" type="button" class="btn btn-danger" data-dismiss="modal">Send Email</button>
+            </div>
+            <div class="row" style="justify-content: center; text-align: center;">
+                <div class="col-xl-12">
+                    <h5 class="modal-title" id="emailModalLabel">or</h5>
+                </div>
+                <div class="col-xl-12" style="height: 20px;"></div>
+                <div class="col-xl-12" style="margin-bottom: 20px;">
+                    <button *ngIf="!authService.loggedIn()" type="button" class="btn btn-info btn-lg" id="googleBtn">Log in with Google</button>
+                </div>                
+            </div>
+          </div>
+        </div>
+</div>
+
+<!-- Google Alert Modal -->
+<div class="modal fade" id="googleModal" tabindex="-1" role="dialog" aria-labelledby="googleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="alertModalLabel">No account found. Please purchase a plan to create your account.</h5>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+            </div>
+          </div>
+        </div>
+</div>

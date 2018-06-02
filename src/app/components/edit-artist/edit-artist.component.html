@@ -1,0 +1,588 @@
+<div class="background">
+    <div style="height: 20vh;"></div>
+        <div *ngIf="customer" class="profile-page">
+
+                <!-- <div style="height: 30vh;"></div> -->
+
+                <div *ngIf="!customer.coverImageUrl" class="page-header header-filter" data-parallax="true" style="background-image: url('../assets/img/conPics/con17.JPG');"></div>
+                <div *ngIf="customer.coverImageUrl" class="page-header header-filter" data-parallax="true" style="height: 80vh;" [ngStyle]="{'background-image': 'url(' + customer.coverImageUrl + ')'}"></div>
+                <div class="main main-raised" style="margin-bottom: 30px; margin-top: -200px; padding-bottom: 30px;">
+                    <div class="profile-content">
+                        <div class="container">
+                          
+                            <div class="row">
+                              
+                                <div class="col-md-6 ml-auto mr-auto">
+                                    <div class="profile">
+                                        <div class="avatar">
+                                            
+                                            <img *ngIf="customer.profileImageUrl" id="profile-pic" [src]="customer.profileImageUrl" alt="Circle Image" class="img-raised rounded-circle img-fluid">                              
+                                            <img *ngIf="!customer.profileImageUrl" id="profile-pic" src="assets/img/kit/pro/placeholder.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                        
+                                          <!-- <div *ngIf="profileFile">
+                                            <img id="profile-pic" [src]="profileFile" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                                          </div> -->
+                                          
+                                        </div>
+              
+
+                                        <!-- <label>Upload File</label>
+                                        <input type="file" accept=".jpg, .jpeg, .png" (change)="onChange($event)">
+                                        <p class="help-block">Only png and jpg allowed</p> -->
+                                        
+                                        
+                                        <div class="name">
+              
+                                          
+                                            <button style="margin-top: 20px;" routerLink="/dashboard" type="submit" class="btn btn-primary sameSizeButtons">Payment Info</button>
+
+                                            <!-- <h3 class="title">{{customer.fullName}}</h3> -->
+                                            <!-- <input type="text" [(ngModel)]="customer.fullName" class="form-control" placeholder="Add Name" name="title"> -->
+                                            <!-- <h6>Artist</h6> -->
+                                            <!-- <a href="#pablo" class="btn btn-just-icon btn-link btn-dribbble"><i class="fa fa-dribbble"></i></a>
+                                            <a href="#pablo" class="btn btn-just-icon btn-link btn-twitter"><i class="fa fa-twitter"></i></a>
+                                            <a href="#pablo" class="btn btn-just-icon btn-link btn-pinterest"><i class="fa fa-pinterest"></i></a> -->
+                                        </div>
+                                    </div>
+
+                                    <!-- <div class="follow"> -->
+                                        <!-- <button id="coverButton" (click)="changeCover()" class="btn btn-primary" rel="tooltip" title="Change Cover Picture">
+                                            Change Cover Pic
+                                        </button> -->
+                                        
+                                    <!-- </div> -->
+                                </div>
+                            </div>
+              
+                        
+                            
+                            <!-- <div style="margin-left: 35px; margin-top: 20px; margin-bottom: 20px;" class="row"> -->
+               
+                            <div style="justify-content: center; text-align: center; margin-top: 100px;" class="row">
+                              <!-- <div class="col-md-12 ml-auto">
+                                  <button routerLink="/dashboard" type="submit" class="btn btn-danger sameSizeButtons">Payment Info</button>
+                              </div> -->
+
+                              <div class="col-md-4">
+                                  <button (click)="onEditFields()" type="submit" class="btn btn-danger sameSizeButtons">Edit Info</button>
+                              </div>
+              
+                              <div class="col-md-4">
+                                  <button id="profileButton" (click)="changeProfile()" class="btn btn-danger sameSizeButtons">Change Profile Photo</button>
+                                  <input style="display:none;" id="fileInputProfile" type="file" accept=".jpg, .jpeg, .png" (change)="onProfileChange($event)">
+                              </div>
+              
+                              <div class="col-md-4">
+                                  <button (click)="changeCover()" type="submit" class="btn btn-danger sameSizeButtons">Change Cover Photo</button>
+                                  <input style="display:none;" id="fileInputCover" type="file" accept=".jpg, .jpeg, .png" (change)="onCoverChange($event)">
+                              </div>
+              
+                            </div>
+            
+                            <div style="height: 20px;"></div>
+
+                                <label>Full Name</label>
+                                <h4> {{customer.fullName}}</h4>
+                                <br>
+                                <label>Facebook <i class="fa fa-facebook"></i>  </label>
+                                <h4> https://{{customer.facebookUrl}}</h4>
+                                <br>
+                                <label>Twitter <i class="fa fa-twitter"></i>  </label>
+                                <h4> https://{{customer.twitterUrl}}</h4>
+                                <br>
+                                <label>Instagram <i class="fa fa-instagram"></i>  </label>
+                                <h4> https://{{customer.instagramUrl}}</h4>
+                                <br>
+                                <label>Bio</label>
+                                <h4> {{customer.bio}}</h4>
+              
+                                <br>
+                                
+                          
+                    <div class="row">
+                      
+                      <h2><b> Exhibition History: </b></h2>
+              
+                      <button (click)="addExhibition()" class="btn btn-fab btn-success btn-round" type="button" rel="tooltip" title="Add New Exhibition">
+                          <i class="material-icons">add</i>
+                      </button>
+                    </div>
+              
+                    <div *ngFor="let exhibition of exhibitionHistory">
+                        <label style="font-size: 2rem; margin-top: 20px;">- <b>{{exhibition.year}}</b>  {{exhibition.venue}}, <i>"{{exhibition.title}}"</i></label> 
+              
+                        <button style="right: -10px; top: -10px;" (click)="deleteExhibition(exhibition._id)" class="btn btn-fab btn-danger btn-round" rel="tooltip" title="Change Cover Picture">
+                             <i class="material-icons">clear</i>
+                        </button>
+                        
+                    </div>
+              
+                    <!-- <div *ngIf="showNewExhibitionForm" class="form-group card card-raised" style="padding: 50px;">
+                        <label>New Exhibition</label>
+                        <input type="text" [(ngModel)]="newExhibition.title" class="form-control" placeholder="Title" name="exhibitionTitle">
+                        <input type="text" [(ngModel)]="newExhibition.year" class="form-control" placeholder="Year" name="exhibitionYear">
+                        <input type="text" [(ngModel)]="newExhibition.venue" class="form-control" placeholder="Venue" name="exhibitionVenue">
+              
+              
+                        <button (click)="saveExhibition()" class="btn btn-primary btn-lg" type="button">
+                                Add Exhibition
+                        </button>
+              
+                    </div> -->
+              
+              
+                    <div class="row" style="margin-top: 30px;">
+                      <h2><b> Artwork: </b></h2>
+              
+                      <button (click)="addArtwork()" class="btn btn-fab btn-success btn-round" type="button">
+                          <i class="material-icons">add</i>
+                      </button>
+                    </div>
+              
+                    <div *ngIf="artworks" class="row">
+                        <div *ngFor="let artwork of artworks" class="col-md-4">
+                            <div class="card card-profile card-plain">
+                                
+                                <button style="bottom: -30px; z-index: 2;" (click)="deleteArtwork(artwork._id)" class="btn btn-fab btn-danger btn-round cool-btn">
+                                    <i class="material-icons">clear</i>
+                                </button>
+              
+                                <div class="card-header card-header-image">
+                                    <a>
+                                        <img class="img" [src]="artwork.imageUrl">
+                                    </a>
+                                </div>
+                                
+                                <div class="card-body">
+                                    <h4><a class="name-link"> <b>{{artwork.title}}</b>, {{artwork.year}}</a></h4>
+                                    <h6 class="card-category text-muted"> {{artwork.dimensions}}, {{artwork.askingPrice}}</h6>
+                                </div>
+                                <!-- <div class="card-footer justify-content-center">
+                                    <a href="#pablo" class="btn btn-just-icon btn-dribbble btn-round"><i class="fa fa-dribbble"></i></a>
+                                    <a href="#pablo" class="btn btn-just-icon btn-twitter btn-round"><i class="fa fa-twitter"></i></a>
+                                </div> -->
+                            </div>
+                        </div>
+                    </div>
+              
+                    <!-- <div *ngIf="showNewArtworkForm" class="card card-raised" style="padding: 50px;">
+                        <label>New Artwork</label>
+                        <input type="text" [(ngModel)]="newArtwork.title" class="form-control" placeholder="Title" name="artworkTitle">
+                        <input type="text" [(ngModel)]="newArtwork.year" class="form-control" placeholder="Year" name="artworkYear">
+                        <input type="text" [(ngModel)]="newArtwork.askingPrice" class="form-control" placeholder="Asking Price" name="artworkPrice">
+              
+                        <br>
+              
+                        <label>Upload Image</label>
+                        <input type="file" accept=".jpg, .jpeg, .png" (change)="onArtworkChange($event)">
+                        <p class="help-block">Only png and jpg allowed</p>
+              
+                        <button (click)="saveArtwork()" class="btn btn-primary btn-lg" type="button">
+                            Add Artwork
+                        </button>
+              
+                    </div> -->
+              
+                    <!-- <div *ngFor="let artwork of artworks">
+                        <div class="form-group">
+                            <label>Artwork {{artworks.length}}</label>
+                            <input type="text" [(ngModel)]="artwork.title" class="form-control" placeholder="Title" name="artworkTitle">
+                            <input type="text" [(ngModel)]="artwork.year" class="form-control" placeholder="Year" name="artworkYear">
+                            <input type="text" [(ngModel)]="artwork.askingPrice" class="form-control" placeholder="Venue" name="artworkPrice">
+                        </div>
+              
+                        <label>Upload File</label>
+                        <input type="file" accept=".jpg, .jpeg, .png" (change)="onChange($event)">
+                        <p class="help-block">Only png and jpg allowed</p>
+                    </div> -->
+              
+                    <!-- <button (click)="testArtwork()" class="btn btn-primary btn-lg" type="button">
+                            Test Log
+                    </button> -->
+              
+                    <br>
+              
+              
+                    <!-- <button (click)="testExhibition()" class="btn btn-primary btn-lg" type="button">
+                            Test Log
+                    </button> -->
+                            <!-- <div class="row">
+                                <div class="col-md-6 ml-auto mr-auto">
+                                    <div class="profile-tabs">
+                                        <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
+                                            
+                                            <li class="nav-item">
+                                                <a class="nav-link active" href="#work" role="tab" data-toggle="tab">
+                                                    <i class="material-icons">palette</i> Work
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#connections" role="tab" data-toggle="tab">
+                                                    <i class="material-icons">people</i> Connections
+                                                </a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#media" role="tab" data-toggle="tab">
+                                                    <i class="material-icons">camera</i> Media
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab-content tab-space">
+                                <div class="tab-pane active work" id="work">
+                                    <div class="row">
+                                        <div class="col-md-7 ml-auto mr-auto ">
+                                            <h4 class="title">Latest Collections</h4>
+                                            <div class="row collections">
+                                                <div class="col-md-6">
+                                                    <div class="card card-background" style="background-image: url('../assets/img/kit/pro/examples/mariya-georgieva.jpg')">
+                                                        <a href="#pablo"></a>
+                                                        <div class="card-body">
+                                                            <label class="badge badge-warning">Spring 2016</label>
+                                                            <a href="#pablo">
+                                                                <h2 class="card-title">Stilleto</h2>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card card-background" style="background-image: url('../assets/img/kit/pro/examples/clem-onojeghuo.jpg')">
+                                                        <a href="#pablo"></a>
+                                                        <div class="card-body">
+                                                            <label class="badge badge-info">Spring 2016</label>
+                                                            <a href="#pablo">
+                                                                <h2 class="card-title">High Heels</h2>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card card-background" style="background-image: url('../assets/img/kit/pro/examples/olu-eletu.jpg')">
+                                                        <a href="#pablo"></a>
+                                                        <div class="card-body">
+                                                            <label class="badge badge-danger">Summer 2016</label>
+                                                            <a href="#pablo">
+                                                                <h2 class="card-title">Flats</h2>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <div class="card card-background" style="background-image: url('../assets/img/kit/pro/examples/darren-coleshill.jpg')">
+                                                        <a href="#pablo"></a>
+                                                        <div class="card-body">
+                                                            <label class="badge badge-success">Winter 2015</label>
+                                                            <a href="#pablo">
+                                                                <h2 class="card-title">Men's Sneakers</h2>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 mr-auto ml-auto stats">
+                                            <h4 class="title">Stats</h4>
+                                            <ul class="list-unstyled">
+                                                <li>
+                                                    <b>60</b> Products</li>
+                                                <li>
+                                                    <b>4</b> Collections</li>
+                                                <li>
+                                                    <b>331</b> Influencers</li>
+                                                <li>
+                                                    <b>1.2K</b> Likes</li>
+                                            </ul>
+                                            <hr>
+                                            <h4 class="title">About his Work</h4>
+                                            <p class="description">French luxury footwear and fashion. The footwear has incorporated shiny, red-lacquered soles that have become his signature.</p>
+                                            <hr>
+                                            <h4 class="title">Focus</h4>
+                                            <span class="badge badge-primary">Footwear</span>
+                                            <span class="badge badge-rose">Luxury</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane connections" id="connections">
+                                    <div class="row">
+                                        <div class="col-md-5 ml-auto mr-auto">
+                                            <div class="card card-profile card-plain">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="card-header card-header-image">
+                                                            <a href="#pablo">
+                                                                <img class="img" src="../assets/img/kit/pro/faces/avatar.jpg" />
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">Gigi Hadid</h4>
+                                                            <h6 class="card-category text-muted">Model</h6>
+                                                            <p class="card-description">
+                                                                Don't be scared of the truth because we need to restart the human foundation in truth...
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 mr-auto ml-auto">
+                                            <div class="card card-profile card-plain">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="card-header card-header-image">
+                                                            <a href="#pablo">
+                                                                <img class="img" src="../assets/img/kit/pro/faces/marc.jpg" />
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">Marc Jacobs</h4>
+                                                            <h6 class="card-category text-muted">Designer</h6>
+                                                            <p class="card-description">
+                                                                Don't be scared of the truth because we need to restart the human foundation in truth...
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-5 ml-auto mr-auto">
+                                            <div class="card card-profile card-plain">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="card-header card-header-image">
+                                                            <a href="#pablo">
+                                                                <img class="img" src="../assets/img/kit/pro/faces/kendall.jpg" />
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">Kendall Jenner</h4>
+                                                            <h6 class="card-category text-muted">Model</h6>
+                                                            <p class="card-description">
+                                                                I love you like Kanye loves Kanye. Don't be scared of the truth.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5 ml-auto mr-auto">
+                                            <div class="card card-profile card-plain">
+                                                <div class="row">
+                                                    <div class="col-md-5">
+                                                        <div class="card-header card-header-image">
+                                                            <a href="#pablo">
+                                                                <img class="img" src="../assets/img/kit/pro/faces/card-profile2-square.jpg" />
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7">
+                                                        <div class="card-body">
+                                                            <h4 class="card-title">George West</h4>
+                                                            <h6 class="card-category text-muted">Model/DJ</h6>
+                                                            <p class="card-description">
+                                                                I love you like Kanye loves Kanye.
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane text-center gallery" id="media">
+                                    <div class="row">
+                                        <div class="col-md-3 ml-auto">
+                                            <img src="../assets/img/kit/pro/examples/mariya-georgieva.jpg" class="rounded">
+                                            <img src="../assets/img/kit/pro/examples/clem-onojegaw.jpg" class="rounded">
+                                        </div>
+                                        <div class="col-md-3 mr-auto">
+                                            <img src="../assets/img/kit/pro/examples/clem-onojeghuo.jpg" class="rounded">
+                                            <img src="../assets/img/kit/pro/examples/olu-eletu.jpg" class="rounded">
+                                            <img src="../assets/img/kit/pro/examples/cynthia-del-rio.jpg" class="rounded">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <footer class="footer ">
+                    <div class="container">
+                        <nav class="pull-left">
+                            <ul>
+                                <li>
+                                    <a href="#creative">
+                                        Creative Tim
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#creative">
+                                        About Us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#creative">
+                                        Blog
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#creative">
+                                        Licenses
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                        <div class="copyright pull-right">
+                            &copy;
+                            <script>
+                                document.write(new Date().getFullYear())
+                            </script>, made with <i class="material-icons">favorite</i> by
+                            <a href="https://www.creative-tim.com">Creative Tim</a> for a better web.
+                        </div>
+                    </div>
+                </footer> -->
+                        </div>
+                    </div>
+                </div>
+              </div>
+</div>
+
+
+<!-- New Artwork Modal -->
+<div class="modal fade" id="newArtworkModal" tabindex="-1" role="dialog" aria-labelledby="newArtworkLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="padding: 30px;">
+          <label>New Artwork</label>
+          <input type="text" [(ngModel)]="newArtwork.title" class="form-control" placeholder="Title" name="artworkTitle">
+          <input type="text" [(ngModel)]="newArtwork.year" class="form-control" placeholder="Year" name="artworkYear">
+          <input type="text" [(ngModel)]="newArtwork.dimensions" class="form-control" placeholder="Dimensions" name="artworkDimensions">
+          <input type="text" [(ngModel)]="newArtwork.askingPrice" class="form-control" placeholder="Asking Price" name="artworkPrice">
+
+          <br>
+
+          <label>Upload Image</label>
+          <input type="file" accept=".jpg, .jpeg, .png" (change)="onArtworkChange($event)">
+          <p class="help-block">Only png and jpg allowed</p>
+
+          <button (click)="saveArtwork()" class="btn btn-primary btn-lg" type="button">
+              Add Artwork
+          </button>
+        <!-- <div class="modal-header">
+          <h5 class="modal-title" id="newArtworkLabel">{{alertText}}</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+        </div> -->
+      </div>
+    </div>
+  </div>
+
+  <!-- New Exhibition Modal -->
+<div class="modal fade" id="newExhibitionModal" tabindex="-1" role="dialog" aria-labelledby="newExhibitionLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="padding: 30px;">
+          <label>New Exhibition</label>
+          <input type="text" [(ngModel)]="newExhibition.title" class="form-control" placeholder="Title" name="exhibitionTitle">
+          <input type="text" [(ngModel)]="newExhibition.year" class="form-control" placeholder="Year" name="exhibitionYear">
+          <input type="text" [(ngModel)]="newExhibition.venue" class="form-control" placeholder="Venue" name="exhibitionVenue">
+
+          <br>
+          <br>
+
+          <button (click)="saveExhibition()" class="btn btn-primary btn-lg" type="button">
+                  Add Exhibition
+          </button>
+        <!-- <div class="modal-header">
+          <h5 class="modal-title" id="newArtworkLabel">{{alertText}}</h5>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Ok</button>
+        </div> -->
+      </div>
+    </div>
+</div>
+
+  <!-- New Fields Modal -->
+<div class="modal fade" id="newFieldsModal" tabindex="-1" role="dialog" aria-labelledby="newFieldsLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content" style="padding: 30px;">
+
+        <div class="container">
+            <div class="form-group"> 
+                <label>Full Name</label>
+                <input type="text" class="form-control" [(ngModel)]="fullName" placeholder="Add full name" name="fullName">
+              </div>
+      
+              <div class="form-group">
+                  <label class="socialMediaLabel">Facebook <i class="fa fa-facebook"></i>  </label>
+                    
+                  <div class="row h-100">
+                    <div class="col-xs-4 my-auto" style="margin-right: 8px;">
+                      <label style="margin-top: 8px;">https://</label>
+                    </div>
+                      
+                    <div class="col-xs-8 my-auto" style="width: 80%;">
+                        <input class="form-control" [(ngModel)]="facebookUrl" placeholder="Add facebook link" name="facebookLink">
+                    </div>
+                  </div>
+                    
+              </div>
+
+              <div class="form-group">
+                  <label class="socialMediaLabel">Twitter <i class="fa fa-twitter"></i>  </label>
+                    
+                  <div class="row h-100">
+                    <div class="col-xs-4 my-auto" style="margin-right: 8px;">
+                      <label style="margin-top: 8px;">https://</label>
+                    </div>
+                      
+                    <div class="col-xs-8 my-auto" style="width: 80%;">
+                        <input class="form-control" [(ngModel)]="twitterUrl" placeholder="Add twitter link" name="twitterLink">
+                    </div>
+                  </div>
+                    
+              </div>
+
+              <div class="form-group">
+                  <label class="socialMediaLabel">Instagram <i class="fa fa-instagram"></i>  </label>
+                    
+                  <div class="row h-100">
+                    <div class="col-xs-4 my-auto" style="margin-right: 8px;">
+                      <label style="margin-top: 8px;">https://</label>
+                    </div>
+                      
+                    <div class="col-xs-8 my-auto" style="width: 80%;">
+                        <input class="form-control" [(ngModel)]="instagramUrl" placeholder="Add instagram link" name="instagramLink">
+                    </div>
+                  </div>
+                    
+              </div>
+      
+              <div class="form-group">
+                  <label>Bio</label>
+                  <textarea type="text" [(ngModel)]="bio" class="form-control" placeholder="Add bio" name="onView"></textarea>
+              </div>
+            
+      
+            <br>
+            <br>
+      
+                <button (click)="saveFields()" class="btn btn-primary btn-lg" type="button">
+                        Save
+                </button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+

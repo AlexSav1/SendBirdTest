@@ -1,0 +1,51 @@
+<div class="background">
+    <div style="height: 20vh;"></div>
+    <div class="container">
+        <h1 class="title">Public Events</h1>
+        <div class="row">
+            <div *ngFor="let event of publicEvents" class="col-lg-6 p-2">
+                <a routerLink="/event/{{event._id}}">
+                    <img class="img img-raised square" [src]="event.imageUrl">
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- <div class="page-header header-filter" style="background-image: url('assets/img/conPics/con20.jpg');">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+              <h1 class="title">Upcoming Events</h1>
+              <h4>Now you have no excuses, it&apos;s time to surprise your clients, your competitors, and why not, the world. You probably won&apos;t have a better chance to show off all your potential if it&apos;s not by designing a website for your own agency or web studio.</h4>
+          </div>
+      </div>
+  </div>
+</div>
+<div class="blogs-4" id="blogs-4">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto">
+                <div *ngFor="let event of events" class="card card-plain card-blog">
+                    <div class="card-header card-header-image">
+                        <a routerLink="/event/{{event._id}}">
+                            <img class="img img-raised" [src]="event.imageUrl">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <h6 class="card-category text-info">On View: {{event.onView}}</h6>
+                        <h6 class="card-category text-success">Gallery Party: {{event.galleryParty}}</h6>
+                        <h3 class="card-title">
+                            <a class="name-link" routerLink="/event/{{event._id}}">{{event.title}}</a>
+                        </h3>
+                        <h5 class="card-description">
+                          {{event.bio}}
+                        </h5>
+                        <a routerLink="/event/{{event._id}}"class="btn btn-primary btn-round"> Read More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->

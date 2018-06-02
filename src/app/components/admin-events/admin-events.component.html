@@ -1,0 +1,79 @@
+<div class=" " style="background-color: black;">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-8 ml-auto mr-auto text-center">
+              <h1 class="title" style="color: black;">Admin</h1>
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+    <div style="margin-top: 50px;" *ngIf="adminService.adminLoggedIn()">
+        <button routerLink="/admin/polls" class="btn btn-primary">Polls</button>
+        <button routerLink="/admin/artists" class="btn btn-primary">Artists</button>
+        <button (click)="logout()" class="btn btn-primary">Log Out</button>
+    </div>
+</div>
+
+<app-admin-event-form (newEvent)="onNewEvent($event)"></app-admin-event-form>
+<br>
+<br>
+<div class="container">
+
+  <h1>Member Only Events</h1>
+
+  <h3 *ngIf="!memberEvents || memberEvents.length == 0">No Events</h3>
+
+  <div *ngIf="events" class="row">
+    <div *ngFor="let event of memberEvents" class="col-md-4">
+        <div class="card card-blog">
+            <div class="card-header card-header-image">
+                <a routerLink="/event/{{event._id}}">
+                    <img class="img img-raised" [src]="event.imageUrl">
+                </a>
+            </div>
+            <div class="card-body">
+                <h6 class="category text-info">On View: {{event.onView}}</h6>
+                <h6 class="category text-info">Gallery Party: {{event.galleryParty}}</h6>
+                <h4 class="card-title">
+                    <a href="#pablo">{{event.title}}</a>
+                </h4>
+                <p class="card-description">
+                    {{event.bio}}
+                </p>
+                <button (click)="deleteEvent(event)" class="btn btn-danger mr-3">Delete Event</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+  <h1>Public Events</h1>
+
+  <h3 *ngIf="!publicEvents || publicEvents.length == 0">No Events</h3>
+
+  <div *ngIf="events" class="row">
+    <div *ngFor="let event of publicEvents" class="col-md-4">
+        <div class="card card-blog">
+            <div class="card-header card-header-image">
+                <a routerLink="/event/{{event._id}}">
+                    <img class="img img-raised" [src]="event.imageUrl">
+                </a>
+            </div>
+            <div class="card-body">
+                <h6 class="category text-info">On View: {{event.onView}}</h6>
+                <h6 class="category text-info">Gallery Party: {{event.galleryParty}}</h6>
+                <h4 class="card-title">
+                    <a href="#pablo">{{event.title}}</a>
+                </h4>
+                <p class="card-description">
+                    {{event.bio}}
+                </p>
+                <button (click)="deleteEvent(event)" class="btn btn-danger mr-3">Delete Event</button>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+

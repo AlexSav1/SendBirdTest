@@ -1,0 +1,17 @@
+#blogs-4 {
+    background-color: white;
+}
+
+.name-link:hover {
+    text-decoration: underline;
+}
+
+.background {
+    background-color: white;
+}
+
+.square {
+    width: 475px;
+    height: 358px;
+    object-fit: cover;
+}

@@ -1,0 +1,96 @@
+<div class="container">
+
+    <div style="padding: 0px;" class="team-2" id="team-2">
+        <div class="container">
+
+            <h1>Search Artists</h1>
+            <br>
+          
+            <form style="margin-bottom: 50px;" (submit)="onSearch(searchText)">
+                <div class="form-group"> 
+                    <label>Search</label>
+                    <input type="text" class="form-control" [(ngModel)]="searchText" (ngModelChange)="onSearch($event)" placeholder="Search artists by name" name="search">
+                </div>
+            </form>
+            
+            <div *ngIf="artists" class="row">
+    
+                <h3 *ngIf="artists.length == 0">No Results</h3>
+    
+                <div *ngFor="let artist of artists" class="col-md-4">
+                    <div class="card card-profile card-plain">
+                        <div class="card-header card-header-image">
+                            <a routerLink="/artist/{{artist._id}}">
+                                <img *ngIf="artist.profileImageUrl" class="img" [src]="artist.profileImageUrl">
+                                <img *ngIf="!artist.profileImageUrl" class="img" src="assets/img/kit/pro/placeholder.jpg">
+                            </a>
+                        </div>
+                        <div class="card-body">
+                            <h4 class="card-title"> <a class="name-link" routerLink="/artist/{{artist._id}}">{{artist.fullName}}</a></h4>
+                            <h6 class="card-category text-muted">{{artist.artworks.length}} works of art</h6>
+                        </div>
+                        <button *ngIf="!artist.featured" (click)="addToFeatured(artist)" class="btn btn-success">Add to featured</button>
+                        <button *ngIf="artist.featured" class="btn btn-success" disabled="true">Currently Featured</button>
+
+                        <button *ngIf="!artist.resident" (click)="addToResident(artist)" class="btn btn-warning">Make Resident</button>
+                        <button *ngIf="artist.resident" class="btn btn-warning" disabled="true">Current Resident</button>
+                    </div>
+                </div>
+            </div>
+
+            <div *ngIf="showPages" class="row justify-content-center">
+                    <!-- PAGINATION -->
+                    <div class="col-xl-12 mx-auto">
+                            <ul class="pagination pagination-info" style="min-width: 10px;">
+                                <li *ngIf="currentPage > 1" class="page-item">
+                                    <a (click)="previousPage()" class="page-link"> prev</a>
+                                </li>
+                                <!-- <li class="page-item">
+                                    <a href="javascript:void(0);" class="page-link">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="javascript:void(0);" class="page-link">2</a>
+                                </li>
+                                <li class="active page-item">
+                                    <a href="javascript:void(0);" class="page-link">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="javascript:void(0);" class="page-link">4</a>
+                                </li>
+                                <li class="page-item">
+                                    <a href="javascript:void(0);" class="page-link">5</a>
+                                </li> -->
+                                <li *ngIf="morePages" class="page-item">
+                                    <a (click)="nextPage()" class="page-link">next </a>
+                                </li>
+                            </ul>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    <!-- <h1>Add New Artist</h1>
+  
+    <form (submit)="onSubmit()">
+      <div class="form-group">
+        <label>Name</label>
+        <input type="text" [(ngModel)]="name" class="form-control" placeholder="Add Name" name="name">
+      </div>
+  
+      <div class="form-group">
+        <label>Bio</label>
+        <textarea class="form-control" [(ngModel)]="bio" placeholder="Add Message" name="bio"></textarea>
+      </div>
+  
+      <div class="form-group">
+        <label>Upload File</label>
+        <input type="file" accept=".jpg, .jpeg, .png" (change)="onChange($event)">
+        <p class="help-block">Only png and jpg allowed</p>
+      </div>
+  
+      <input type="submit" class="btn btn-primary" value="submit">
+    </form> -->
+
+
+
+</div>

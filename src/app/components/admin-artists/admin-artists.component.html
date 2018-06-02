@@ -1,0 +1,94 @@
+<div class=" " style="background-color: black;">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 ml-auto mr-auto text-center">
+                <h1 class="title" style="color: black;">Admin</h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div style="margin-top: 50px;" *ngIf="adminService.adminLoggedIn()">
+        <button routerLink="/admin/events" class="btn btn-primary">Events</button>
+        <button routerLink="/admin/polls" class="btn btn-primary">Polls</button>
+        <button (click)="logout()" class="btn btn-primary">Log Out</button>
+    </div>
+</div>
+
+<app-admin-artist-form (newArtist)="onNewArtist($event)" (newResident)="onNewResident($event)"></app-admin-artist-form>
+<br>
+<br>
+<div class="container">
+
+  <h1>Current Resident</h1>
+
+  <h3 *ngIf="!resident">No Resident</h3>
+
+  <div *ngIf="resident" class="row">
+        <div class="col-md-4 ml-auto mr-auto" style="text-align: center;">
+            <div class="card card-blog">
+               <!-- <div class="card-header card-header-image"> -->
+                    <a style="margin-top: 15px;" routerLink="/artist/{{resident._id}}">
+                        <img *ngIf="resident.profileImageUrl" id="profile-pic" [src]="resident.profileImageUrl" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                        <img *ngIf="!resident.profileImageUrl" id="profile-pic" src="assets/img/kit/pro/placeholder.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                    </a>
+                <!-- </div> -->
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <a href="#pablo">{{resident.fullName}}</a>
+                    </h4>
+                    <p class="card-description">
+                        {{resident.bio}}
+                    </p>
+                    <button (click)="removeResident(resident)" class="btn btn-danger mr-3">Remove Resident</button>
+                </div>
+            </div>
+        </div>
+  
+    </div>
+
+
+
+  <h1>Current Artists</h1>
+
+  <h3 *ngIf="!artists">No Artists</h3>
+
+  <!-- <ul *ngIf="artists" class="list-group">
+    <li *ngFor="let artist of artists" class="list-group-item">
+      <img [src]="artist.imageUrl" alt="">
+      <br>
+      <br>
+      <h3>{{artist.name}}</h3>
+      <br>
+      <p>{{artist.bio}}</p>
+      <button (click)="deleteArtist(artist)" class="btn btn-danger mr-3">Delete Artist</button>
+    </li>
+    <br>
+  </ul> -->
+
+  <div *ngIf="artists" class="row">
+      <div *ngFor="let artist of artists" class="col-md-4 ml-auto mr-auto" style="text-align: center;">
+          <div class="card card-blog">
+                <!-- <div class="card-header card-avatar"> -->
+                        <a style="margin-top: 15px;" routerLink="/artist/{{artist._id}}">
+                            <img *ngIf="artist.profileImageUrl" id="profile-pic" [src]="artist.profileImageUrl" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                            <img *ngIf="!artist.profileImageUrl" id="profile-pic" src="assets/img/kit/pro/placeholder.jpg" alt="Circle Image" class="img-raised rounded-circle img-fluid">
+                        </a>
+                <!-- </div> -->
+                <div class="card-body">
+                        <h4 class="card-title">
+                            <a href="#pablo">{{artist.fullName}}</a>
+                        </h4>
+                        <p class="card-description">
+                            {{artist.bio}}
+                        </p>
+                        <button (click)="removeArtist(artist)" class="btn btn-danger mr-3">Remove</button>
+                </div>
+          </div>
+      </div>
+
+      <h3 *ngIf="artists.length == 0">No Featured Artists Found</h3>
+  </div>
+
+</div>

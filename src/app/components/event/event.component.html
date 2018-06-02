@@ -1,0 +1,60 @@
+<div class="background">
+
+    <div style="height: 20vh;"></div>
+
+    <div *ngIf="event" class="container">
+        <h2 class="title">{{event.title}}</h2>
+        <img class="img img raised" [src]="event.imageUrl">
+        <h3>On View: {{event.onView}}</h3>
+        <h3>Gallery Party: {{event.galleryParty}}</h3>
+        <br>
+        <p>{{event.bio}}</p>
+        <br>
+    </div>
+    
+</div>
+
+
+        <!-- <div *ngIf="event" class="blog-post">
+    
+                <div class="page-header header-filter" data-parallax="true" [ngStyle]="{'background-image': 'url(' + event.imageUrl + ')'}">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-8 ml-auto mr-auto text-center">
+                                <h1 class="title">{{event.title}}</h1>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="main main-raised" style="margin-bottom: 30px;">
+                    <div class="container">
+                        <div class="section section-text">
+                            <div class="row">
+                                <div class="col-md-8 ml-auto mr-auto">
+                                    <h3 class="title">On View: {{event.onView}}</h3>
+                                    <h3 class="title">Gallery Party: {{event.galleryParty}}</h3>
+                                    <br>
+                                    <p>{{event.bio}}</p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="section section-blog-info">
+                            <div class="row">
+                                <div class="col-md-8 ml-auto mr-auto">
+                                    <div class="row">
+                                        
+                                    </div>
+            
+                                    <br>
+            
+                                    <br>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+        </div> -->

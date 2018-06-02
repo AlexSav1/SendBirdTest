@@ -1,0 +1,38 @@
+#profile-pic {
+    min-height: 150px;
+    object-fit: cover;
+}
+
+/* .profile-page .profile img:hover{
+    opacity: 0.5;
+} */
+
+.background {
+    background-color: white;
+}
+
+.socialMediaLabel {
+    left: -20px;
+}
+
+.sameSizeButtons {
+    min-width: 200px;
+}
+
+.cool-btn {
+    max-width: 1px;
+}
+
+
+/* #profileButton {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content:center;
+} */
+
+/* #coverButton {
+    position: absolute; 
+    right: 50vw;
+    margin-top: -15px;
+} */
